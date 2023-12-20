@@ -9,15 +9,19 @@ public class Main {
     public static void main(String[] args) {
         List<Pessoa> listaPessoas = lerPessoasDoConsole();
         
-        List<Pessoa> mulheres = listaPessoas.stream()
-                .filter(pessoa -> "Feminino".equalsIgnoreCase(pessoa.sexo))
-                .collect(Collectors.toList());
+        List<Pessoa> mulheres = filtrarMulheres(listaPessoas);
 
         System.out.println("Lista de mulheres:");
         mulheres.forEach(pessoa -> System.out.println("Nome: " + pessoa.nome + ", Sexo: " + pessoa.sexo));
     }
 
-    private static List<Pessoa> lerPessoasDoConsole() {
+    public static List<Pessoa> filtrarMulheres(List<Pessoa> listaPessoas) {
+        return listaPessoas.stream()
+                .filter(pessoa -> "Feminino".equalsIgnoreCase(pessoa.sexo))
+                .collect(Collectors.toList());
+    }
+
+    static List<Pessoa> lerPessoasDoConsole() {
         Scanner scanner = new Scanner(System.in);
         List<Pessoa> listaPessoas = new ArrayList<>();
 
